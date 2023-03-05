@@ -116,6 +116,7 @@ bench get-app hrms
 bench --site example.com install-app hrms
 # Drive
 bench get-app https://github.com/frappe/drive
+bench --site example.com install-app drive
 cd apps/drive
 yarn dev
 	URL http://ip-address:8000/drive
