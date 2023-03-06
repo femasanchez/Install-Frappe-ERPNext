@@ -143,7 +143,7 @@ sudo apt-get install python3-ghdiff
 bench get-app https://github.com/frappe/wiki
 bench --site example.com install-app wiki
 # insights
-pip intall pandas==1.5.1
+pip install pandas==1.5.1
 pip install SQLAlchemy==1.4.43
 bench get-app https://github.com/frappe/insights
 bench --site example.com install-app insights
