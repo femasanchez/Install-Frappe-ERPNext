@@ -89,15 +89,8 @@ bench start
 
 # Add frappe apps
 # OCR
-sudo apt-get install tesseract-ocr imagemagick libmagickwand-dev ghostscript imagemagick
-pip install pytesseract
-pip install pillow
-pip install wand
-pip install tesserocr
-pip install requests
-pip install pyspellchecker
-pip install six
-pip install paytmchecksum
+sudo apt-get install tesseract-ocr imagemagick libmagickwand-dev ghostscript imagemagick libtesseract-dev -y
+pip install pytesseract pillow wand tesserocr requests pyspellchecker six paytmchecksum
 bench get-app --branch develop erpnext_ocr https://github.com/Monogramm/erpnext_ocr
 bench --site example.com install-app erpnext_ocr
 # Payments
