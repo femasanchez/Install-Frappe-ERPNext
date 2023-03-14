@@ -1,35 +1,32 @@
 # Update and Upgrade Packages
-sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 # Create a new user – (bench user)
 sudo adduser frappe
-usermod -aG sudo frappe
-su frappe 
-cd /home/frappe
+sudo usermod -aG sudo frappe
+su - frappe 
 
 # Install Required Packages
 # Install GIT
-sudo apt-get install git
+sudo apt-get install git -y
 
 # Install Python
-sudo apt-get install python3-dev python3.10-dev python3-setuptools python3-pip python3-distutils
+sudo apt-get install python3 python3-dev python3-setuptools python3-pip python3-distutils -y
 
 # Install Python Virtual Environment
-sudo apt-get install python3.10-venv
+sudo apt-get install python3-venv -y
 
 # Install Software Properties Common
-sudo apt-get install software-properties-common
+sudo apt-get install software-properties-common -y
 
 # Install Redis Server
-sudo apt-get install redis-server
+sudo apt-get install redis-server -y
 
 # Install other packages
-sudo apt-get install xvfb libfontconfig wkhtmltopdf
-sudo apt-get install libmysqlclient-dev
+sudo apt-get install xvfb libfontconfig wkhtmltopdf libmysqlclient-dev -y
 
 # Install MariaDB
-sudo apt install mariadb-server mariadb-client
+sudo apt install mariadb-server mariadb-client -y
 # Configure MYSQL Server
 sudo mysql_secure_installation
     Enter current password for root: (Enter your SSH root user password)
@@ -55,15 +52,22 @@ default-character-set = utf8mb4
 sudo service mysql restart
 
 # Instal CURL
-sudo apt install curl
+sudo apt install curl -y
 
 # Install Node
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn -y
+sudo apt-get install -y nodejs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 source ~/.profile
-nvm install 16.15.0
+nvm install --lts
 
 # Install NPM
-sudo apt-get install npm
+sudo apt-get install npm -y
 
 # Install Yarn
 sudo npm install -g yarn
@@ -94,10 +98,7 @@ pip install pytesseract pillow wand tesserocr requests pyspellchecker six paytmc
 bench get-app --branch develop erpnext_ocr https://github.com/Monogramm/erpnext_ocr
 bench --site example.com install-app erpnext_ocr
 # Payments
-pip install paytmchecksum~=1.7.0
-pip install razorpay~=1.2.0 
-pip install stripe~=2.56.0
-pip install braintree~=4.8.0
+pip install paytmchecksum~=1.7.0 razorpay~=1.2.0 stripe~=2.56.0 braintree~=4.8.0
 bench get-app payments
 bench --site example.com install-app payments
 # Health
@@ -114,10 +115,7 @@ cd apps/drive
 yarn dev
 	URL http://ip-address:8000/drive
 # LMS
-pip install websocket-client
-pip install markdown
-pip install beautifulsoup4
-sudo apt-get install python3-lxml OR pip install lxml
+pip install websocket-client markdown beautifulsoup4 lxml
 bench get-app lms
 bench --site example.com install-app lms
 # Books - (download client https://frappebooks.com/download)
@@ -136,14 +134,12 @@ sudo apt-get install python3-ghdiff
 bench get-app https://github.com/frappe/wiki
 bench --site example.com install-app wiki
 # insights
-pip install pandas==1.5.1
-pip install SQLAlchemy==1.4.43
+pip install pandas==1.5.1 SQLAlchemy==1.4.43
 bench get-app https://github.com/frappe/insights
 bench --site example.com install-app insights
 	URL http://ip-address:8000/insights
-# ecommerce_integrations
-pip install ShopifyAPI==8.2.0
-pip install boto3~=1.18.65
+# ecommerce_integrations 
+pip install ShopifyAPI==8.2.0 boto3~=1.18.65 
 bench get-app https://github.com/frappe/ecommerce_integrations.git
 bench --site example.com install-app ecommerce_integrations
 # gameplan
@@ -176,10 +172,7 @@ bench --site example.com install-app waba_integration
 bench get-app chat
 bench --site example.com install-app chat
 # biometric-attendance-sync-tool 
-pip install requests
-pip install pickleDB
-pip install pyzk
-pip install PyQt5
+pip install requests pickleDB pyzk PyQt5 
 bench get-app https://github.com/frappe/biometric-attendance-sync-tool.git
 python3 -m venv venv
 source venv/bin/activate
