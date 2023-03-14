@@ -1,0 +1,11 @@
+{
+ "db_name": "_87a890f4b4bfc25f",
+ "db_password": "dg7Hc45V4Rt01FOm",
+ "db_type": "mariadb",
+ "encryption_key": "i62RmIto2EYkxybDhcjg1_pYQuU7MpDvq2Yav64YC0c=",
+ "hostname": "erp.pi2.co.id",
+ "maintenance_mode": 0,
+ "user_type_doctype_limit": {
+  "employee_self_service": 20
+ }
+}
